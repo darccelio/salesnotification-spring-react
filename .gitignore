@@ -257,5 +257,6 @@ thumb
 sketch
 
 frontend/node_modules/
+frontend/frontend.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,intellij,netbeans,eclipse,react
