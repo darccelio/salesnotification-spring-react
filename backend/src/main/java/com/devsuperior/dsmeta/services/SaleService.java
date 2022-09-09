@@ -1,11 +1,11 @@
 package com.devsuperior.dsmeta.services;
 
 import com.devsuperior.dsmeta.entities.Sale;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface SaleService {
 
-    List<Sale> findSales();
+    Page<Sale> findSales(String minDate, String maxDate, Pageable pageable);
 
 }
