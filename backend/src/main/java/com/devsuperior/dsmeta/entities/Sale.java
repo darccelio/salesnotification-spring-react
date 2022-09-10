@@ -1,8 +1,11 @@
 package com.devsuperior.dsmeta.entities;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @Entity
 @Table(name = "tb_sales")
@@ -14,9 +17,8 @@ public class Sale {
     private String sellerName;
     private Integer visited;
     private Integer deals;
-    private Double amount;
+    private BigDecimal amount;
     private LocalDate date;
-
 
     public Sale() {
     }
@@ -53,11 +55,11 @@ public class Sale {
         this.deals = deals;
     }
 
-    public Double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -71,8 +73,10 @@ public class Sale {
 
     @Override
     public String toString() {
+        Locale BRAZIL = new Locale("pt","BR");
+        NumberFormat n = NumberFormat.getCurrencyInstance(BRAZIL);
         return "O vendedor " + this.getSellerName()
                 + " foi destaque em " +  this.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
-                " com um total de R$ " + String.format("%.2f", this.getAmount());
+                " com um total de " + n.format(this.getAmount());
     }
 }
