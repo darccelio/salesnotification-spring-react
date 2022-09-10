@@ -2,6 +2,7 @@ package com.devsuperior.dsmeta.entities;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "tb_sales")
@@ -66,5 +67,12 @@ public class Sale {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "O vendedor " + this.getSellerName()
+                + " foi destaque em " +  this.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) +
+                " com um total de R$ " + String.format("%.2f", this.getAmount());
     }
 }
