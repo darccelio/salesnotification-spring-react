@@ -235,11 +235,6 @@ backend/dist/
 backend/nbdist/
 backend/.nb-gradle/
 
-### Backend geral ###
-
-backend/.idea/
-backend/target
-
 ### react ###
 frontend/.DS_*
 frontend/logs
