@@ -238,7 +238,6 @@ backend/.nb-gradle/
 ### Backend geral ###
 
 backend/.idea/
-backend/.mvn/
 backend/target
 
 ### react ###
