@@ -16,16 +16,22 @@ function SalesCard() {
 	const [sales, setSales] = useState<Sale[]>([]);
 
 	let currencyReal = Intl.NumberFormat([], {
-		style: 'currency',
-		currency: 'BRL'
-	})		
+		style: "currency",
+		currency: "BRL",
+	});
 
 	useEffect(() => {
-		axios.get(`${BASE_URL}/sales`).then((response) => {
-			setSales(response.data.content);
-			console.log(response.data.content);
-		});
-	}, []);
+		const dateMin = minDate.toISOString().slice(0, 10);
+		const dateMax = maxDate.toISOString().slice(0, 10);
+
+		console.log(dateMin + "\n" + dateMax)
+
+		axios.get(`${BASE_URL}/sales?minDate=${dateMin}&maxDate=${dateMax}`)
+			.then((response) => {
+				setSales(response.data.content);
+				console.log(response.data.content);
+			});
+	}, [minDate, maxDate]);
 
 	return (
 		<>
@@ -64,24 +70,25 @@ function SalesCard() {
 							</tr>
 						</thead>
 						<tbody>
-							{
-								sales.map((sale) => {
-									return (
-										<tr key={sale.id}>
-											<td className="show992">{ sale.id }</td>
-											<td className="show576"> { new Date(sale.date).toLocaleDateString() }</td>
-											<td>{ sale.sellerName }</td>
-											<td className="show992">{ sale.visited }</td>
-											<td className="show992">{ sale.deals }</td>
-											<td>{ currencyReal.format( sale.amount ) }</td>
-											<td>
-												<div className="dsmeta-red-btn-container">
-													<NotificationButton />
-												</div>
-											</td>
-										</tr>
-									);
-								})}
+							{sales.map((sale) => {
+								return (
+									<tr key={sale.id}>
+										<td className="show992">{sale.id}</td>
+										<td className="show576">
+											{new Date(sale.date).toLocaleDateString()}
+										</td>
+										<td>{sale.sellerName}</td>
+										<td className="show992">{sale.visited}</td>
+										<td className="show992">{sale.deals}</td>
+										<td>{currencyReal.format(sale.amount)}</td>
+										<td>
+											<div className="dsmeta-red-btn-container">
+												<NotificationButton />
+											</div>
+										</td>
+									</tr>
+								);
+							})}
 						</tbody>
 					</table>
 				</div>
