@@ -27,7 +27,6 @@ function SalesCard() {
 		axios.get(`${BASE_URL}/sales?minDate=${dateMin}&maxDate=${dateMax}`)
 			.then((response) => {
 				setSales(response.data.content);
-				console.log(response.data.content);
 			});
 	}, [minDate, maxDate]);
 
