@@ -8,9 +8,6 @@
 </p> 
 <hr>
 
-
-![Capa](https://user-images.githubusercontent.com/65990795/189940669-c714b296-3e33-4237-977c-264cd1fdf6eb.png "Sales Notification APP")
-
 # About Project
 
 https://sales-notification.netlify.app/
